@@ -177,3 +177,12 @@ console.log(updatedBook)
 // it's possible to use spread operator to update properties
 const updatedBook2 = { ...book, pages: 1210 }
 console.log(updatedBook2);
+
+/**
+ * Template literals (ES6): allows to insert js variables/expressions inside string
+ * use ${} and put the variable inside the curly braces
+ */
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split('-')[0]}`;
+console.log(summary);
+
+// ${publicationDate.split('-')[0]: split results in an array and we get the first element (year)
