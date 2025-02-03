@@ -147,7 +147,7 @@ function getBook(id) {
 
 // desestruturação - destructuring
 
-const book = getBook(2);
+const book = getBook(3);
 
 // const title = book.title;
 // const author = book.author;
@@ -225,6 +225,7 @@ console.log(summary2);
  * // falsy: 0, '', null, undefined
  * // truthy: 1, non empty string
  */
+/*
 console.log(true && "Some value"); // "Some value"
 console.log(false && "Some value"); // false
 console.log(hasMovieAdaptation && "This book has a movie"); // "This book has a movie"
@@ -248,3 +249,16 @@ console.log(countWrong);
 // is 0 (zero), the ?? returns 0
 const count = book.reviews.librarything.reviewsCount ?? "no data";
 console.log(count);
+*/
+/**
+ * Optional chaining ?
+ * avoid read properties that are undefined or null
+ * the expression short circuits and evaluates to undefined instead of throwing an error
+ */
+function getTotalReviewCount(book) {
+  const goodread = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0; // set 0 if undefined
+  return goodread + librarything;
+}
+
+console.log(getTotalReviewCount(book));
