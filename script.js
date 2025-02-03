@@ -156,39 +156,64 @@ const book = getBook(1);
 // console.log(author, title);
 
 /** destructuring: avoid get each element of an array or object */
-const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  book;
 
 /** rest operator: creates an array with the elements that were not destructured
  * must be the last parameter
-*/
+ */
 const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
 console.log(primaryGenre, secondaryGenre, otherGenres);
 
 /** spread operator: take the elements out of the array
  * must be the first parameter
-*/
-const newGenres = [...otherGenres, 'epic fantasy'] // creating a new array with a new one
+ */
+const newGenres = [...otherGenres, "epic fantasy"]; // creating a new array with a new one
 console.log(newGenres);
 
 // spreading an object. Creates a new object adding moviePublicationDate property
-const updatedBook = { ...book, moviePublicationDate: '2001-12-19' }
-console.log(updatedBook)
+const updatedBook = { ...book, moviePublicationDate: "2001-12-19" };
+console.log(updatedBook);
 
 // it's possible to use spread operator to update properties
-const updatedBook2 = { ...book, pages: 1210 }
+const updatedBook2 = { ...book, pages: 1210 };
 console.log(updatedBook2);
 
 /**
  * Template literals (ES6): allows to insert js variables/expressions inside string
  * use ${} and put the variable inside the curly braces
  */
-const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split('-')[0]}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${
+  publicationDate.split("-")[0]
+}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 console.log(summary);
 
 // ${publicationDate.split('-')[0]: split results in an array and we get the first element (year)
 
 /**
  * ternary operator
-*/
+ */
 const pagesRange = pages > 1000 ? "over a thousand" : "less then 1000";
 console.log(`The book has ${pagesRange} pages`);
+
+/**
+ * arrow functions (ES6): new way of write functions of, ideally, one line
+ *
+ * how to write: argument (str), an arrow (=>) and what we want to return (str.split("-")[0])
+ * we can use multiples arguments (str, x, y) => str + x * y
+ * everything that is after the arrow (=>) will be returned without the word return
+ */
+// original: function declaration
+// function getYear(str) {
+//   return str.split("-")[0];
+// }
+// console.log(getYear(publicationDate));
+
+// arrow function: function expression
+const getYear = (str) => str.split("-")[0];
+console.log(getYear(publicationDate));
+
+const summary2 = `${title}, a ${pages}-page long book, was written by ${author} and published in ${getYear(
+  publicationDate
+)}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
+console.log(summary2);
