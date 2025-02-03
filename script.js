@@ -147,16 +147,33 @@ function getBook(id) {
 
 // desestruturação - destructuring
 
-const book = getBook(2);
+const book = getBook(1);
 
 // const title = book.title;
 // const author = book.author;
 
 // const { title, author } = book;
-
 // console.log(author, title);
 
-const { title, author, pages, publicationDate, genres, hasMovieAdpatation } =
-  book;
-const [primaryGenre, secondaryGenre] = genres;
-console.log(primaryGenre, secondaryGenre);
+/** destructuring: avoid get each element of an array or object */
+const { title, author, pages, publicationDate, genres, hasMovieAdpatation } = book;
+
+/** rest operator: creates an array with the elements that were not destructured
+ * must be the last parameter
+*/
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+console.log(primaryGenre, secondaryGenre, otherGenres);
+
+/** spread operator: take the elements out of the array
+ * must be the first parameter
+*/
+const newGenres = [...otherGenres, 'epic fantasy'] // creating a new array with a new one
+console.log(newGenres);
+
+// spreading an object. Creates a new object adding moviePublicationDate property
+const updatedBook = { ...book, moviePublicationDate: '2001-12-19' }
+console.log(updatedBook)
+
+// it's possible to use spread operator to update properties
+const updatedBook2 = { ...book, pages: 1210 }
+console.log(updatedBook2);
