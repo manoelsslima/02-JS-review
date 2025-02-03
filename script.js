@@ -286,11 +286,11 @@ const essentialData = books.map((book) => ({
   author: book.author,
 }));
 console.log(essentialData);
-*/
+
 
 // filter: filter some elements of an array based on a condition
 // it's possible to chain filters
-const books = getBooks();
+
 // longBooks will be an array with books with more than 500 pages
 const longBooks = books.filter((book) => book.pages > 500);
 console.log(longBooks);
@@ -304,3 +304,14 @@ const advenureBooks = books
   .filter((book) => book.genres.includes("adventure"))
   .map((book) => book.title);
 console.log(advenureBooks);
+
+*/
+
+// reduce: reduce the entire array
+// first argument: get each element of an array and the accumulator
+// second argument: gets the initial value of the accumulator. It can be a number, an array, object and so on
+const books = getBooks();
+
+// acc stands for accumulator
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+console.log(pagesAllBooks);
