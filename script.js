@@ -262,11 +262,11 @@ function getTotalReviewCount(book) {
 }
 
 console.log(getTotalReviewCount(book));
-*/
 
-// map, filter, reduce
-// returns a new array based on the original
-//
+
+// map, filter, reduce: returns a new array based on the original
+// it's possible to chain three methods
+
 // map: iterate over an array and apply a function to each element of this array
 // ex.: console.log([1,2,3,4].map((el) => el * 2)) // double the values
 const books = getBooks();
@@ -286,3 +286,21 @@ const essentialData = books.map((book) => ({
   author: book.author,
 }));
 console.log(essentialData);
+*/
+
+// filter: filter some elements of an array based on a condition
+// it's possible to chain filters
+const books = getBooks();
+// longBooks will be an array with books with more than 500 pages
+const longBooks = books.filter((book) => book.pages > 500);
+console.log(longBooks);
+
+const longBooksWithAdaptation = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+console.log(longBooksWithAdaptation);
+
+const advenureBooks = books
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
+console.log(advenureBooks);
