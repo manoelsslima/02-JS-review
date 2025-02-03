@@ -146,7 +146,7 @@ function getBook(id) {
 // install Quokka.js extension to run js files without an html file
 
 // desestruturação - destructuring
-
+/*
 const book = getBook(3);
 
 // const title = book.title;
@@ -155,19 +155,19 @@ const book = getBook(3);
 // const { title, author } = book;
 // console.log(author, title);
 
-/** destructuring: avoid get each element of an array or object */
+// destructuring: avoid get each element of an array or object//
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
   book;
 
-/** rest operator: creates an array with the elements that were not destructured
- * must be the last parameter
- */
+// rest operator: creates an array with the elements that were not destructured
+//must be the last parameter
+//
 const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
 console.log(primaryGenre, secondaryGenre, otherGenres);
 
-/** spread operator: take the elements out of the array
- * must be the first parameter
- */
+// spread operator: take the elements out of the array
+//must be the first parameter
+//
 const newGenres = [...otherGenres, "epic fantasy"]; // creating a new array with a new one
 console.log(newGenres);
 
@@ -179,10 +179,10 @@ console.log(updatedBook);
 const updatedBook2 = { ...book, pages: 1210 };
 console.log(updatedBook2);
 
-/**
- * Template literals (ES6): allows to insert js variables/expressions inside string
- * use ${} and put the variable inside the curly braces
- */
+//
+//Template literals (ES6): allows to insert js variables/expressions inside string
+//use ${} and put the variable inside the curly braces
+//
 const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${
   publicationDate.split("-")[0]
 }. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
@@ -190,19 +190,18 @@ console.log(summary);
 
 // ${publicationDate.split('-')[0]: split results in an array and we get the first element (year)
 
-/**
- * ternary operator
- */
+//
+//ternary operator
+//
 const pagesRange = pages > 1000 ? "over a thousand" : "less then 1000";
 console.log(`The book has ${pagesRange} pages`);
 
-/**
- * arrow functions (ES6): new way of write functions of, ideally, one line
- *
- * how to write: argument (str), an arrow (=>) and what we want to return (str.split("-")[0])
- * we can use multiples arguments (str, x, y) => str + x * y
- * everything that is after the arrow (=>) will be returned without the word return
- */
+//
+//arrow functions (ES6): new way of write functions of, ideally, one line
+//how to write: argument (str), an arrow (=>) and what we want to return (str.split("-")[0])
+//we can use multiples arguments (str, x, y) => str + x//y
+//everything that is after the arrow (=>) will be returned without the word return
+//
 // original: function declaration
 // function getYear(str) {
 //   return str.split("-")[0];
@@ -218,13 +217,13 @@ const summary2 = `${title}, a ${pages}-page long book, was written by ${author} 
 )}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 console.log(summary2);
 
-/**
- * short circuit operators
- * and: when the first element is false
- * or: when the first element is true
- * // falsy: 0, '', null, undefined
- * // truthy: 1, non empty string
- */
+//
+//short circuit operators
+//and: when the first element is false
+//or: when the first element is true
+//// falsy: 0, '', null, undefined
+//// truthy: 1, non empty string
+//
 /*
 console.log(true && "Some value"); // "Some value"
 console.log(false && "Some value"); // false
@@ -250,11 +249,12 @@ console.log(countWrong);
 const count = book.reviews.librarything.reviewsCount ?? "no data";
 console.log(count);
 */
-/**
- * Optional chaining ?
- * avoid read properties that are undefined or null
- * the expression short circuits and evaluates to undefined instead of throwing an error
- */
+//
+//Optional chaining ?
+//avoid read properties that are undefined or null
+//the expression short circuits and evaluates to undefined instead of throwing an error
+//
+/*
 function getTotalReviewCount(book) {
   const goodread = book.reviews.goodreads.reviewsCount;
   const librarything = book.reviews.librarything?.reviewsCount ?? 0; // set 0 if undefined
@@ -262,3 +262,27 @@ function getTotalReviewCount(book) {
 }
 
 console.log(getTotalReviewCount(book));
+*/
+
+// map, filter, reduce
+// returns a new array based on the original
+//
+// map: iterate over an array and apply a function to each element of this array
+// ex.: console.log([1,2,3,4].map((el) => el * 2)) // double the values
+const books = getBooks();
+
+const titles = books.map((book) => book.title);
+console.log(titles);
+
+// const essentialData = books.map((book) => {
+//   return {
+//     title: book.title,
+//     author: book.author,
+//   };
+// });
+// or use () to return
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
+console.log(essentialData);
