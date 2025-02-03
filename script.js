@@ -156,7 +156,7 @@ const book = getBook(1);
 // console.log(author, title);
 
 /** destructuring: avoid get each element of an array or object */
-const { title, author, pages, publicationDate, genres, hasMovieAdpatation } = book;
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
 
 /** rest operator: creates an array with the elements that were not destructured
  * must be the last parameter
@@ -182,7 +182,13 @@ console.log(updatedBook2);
  * Template literals (ES6): allows to insert js variables/expressions inside string
  * use ${} and put the variable inside the curly braces
  */
-const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split('-')[0]}`;
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split('-')[0]}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 console.log(summary);
 
 // ${publicationDate.split('-')[0]: split results in an array and we get the first element (year)
+
+/**
+ * ternary operator
+*/
+const pagesRange = pages > 1000 ? "over a thousand" : "less then 1000";
+console.log(`The book has ${pagesRange} pages`);
