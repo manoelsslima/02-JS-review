@@ -147,7 +147,7 @@ function getBook(id) {
 
 // desestruturação - destructuring
 
-const book = getBook(1);
+const book = getBook(2);
 
 // const title = book.title;
 // const author = book.author;
@@ -217,3 +217,34 @@ const summary2 = `${title}, a ${pages}-page long book, was written by ${author} 
   publicationDate
 )}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 console.log(summary2);
+
+/**
+ * short circuit operators
+ * and: when the first element is false
+ * or: when the first element is true
+ * // falsy: 0, '', null, undefined
+ * // truthy: 1, non empty string
+ */
+console.log(true && "Some value"); // "Some value"
+console.log(false && "Some value"); // false
+console.log(hasMovieAdaptation && "This book has a movie"); // "This book has a movie"
+console.log("Manoel" && "Some string"); // "Some string"
+console.log(true || "Some string"); // true
+console.log(false || "Some string"); // "Some string"
+
+console.log(book.translations.spanish);
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+console.log(spanishTranslation);
+
+// short circuit can lead to wrong results, due to js consider 0 (zero) a falsy
+console.log(book.reviews.librarything.reviewsCount);
+const countWrong = book.reviews.librarything.reviewsCount || "no data";
+console.log(countWrong);
+
+// as short circuit can lead to wrong results, due to js consider 0 (zero) a falsy,
+// it was introduced the "Nullish coalescing operator" ( ?? )
+// operator is a logical operator that returns its right-hand side operand when
+// its left-hand side operand is null or undefined. Thus, when the left side
+// is 0 (zero), the ?? returns 0
+const count = book.reviews.librarything.reviewsCount ?? "no data";
+console.log(count);
