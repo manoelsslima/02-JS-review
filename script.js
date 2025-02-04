@@ -368,5 +368,22 @@ fetch("https://jsonplaceholder.typicode.com/todos")
   .then((res) => res.json()) // json converts to json (it's also an promise), so we need another then()
   .then((data) => console.log(data)); // here we already have the response converted to json
 console.log("manoel");
-// note that "manoel" is printed BEFOR the data arrives. It's because the way promises work
+// note that "manoel" is printed BEFOR the data arrives. It's because the way promises work.
+// when the data arrives, JS comes back to then() and executes them.
 */
+
+// async / await
+// async: we tell JS we are using an async function
+// await: we tell JS to wait until the response is completed. Makes JS work synchronous
+// await must be inside an async function
+// the result of an async function IS ALWAYS a promise
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+}
+getTodos();
+console.log("manoel");
+// note that "manoel" is printed BEFORE the todos. It's because the getTodos() function is called
+// then the console.log("manoel") is called. Inside the async function is where the await will
+// happen
