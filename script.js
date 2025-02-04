@@ -264,8 +264,8 @@ function getTotalReviewCount(book) {
 console.log(getTotalReviewCount(book));
 
 
-// map, filter, reduce: returns a new array based on the original
-// it's possible to chain three methods
+// map, filter, reduce: are functional methods, in other words, returns
+// a new array based on the original. It's possible to chain three methods
 
 // map: iterate over an array and apply a function to each element of this array
 // ex.: console.log([1,2,3,4].map((el) => el * 2)) // double the values
@@ -315,3 +315,23 @@ const books = getBooks();
 // acc stands for accumulator
 const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
 console.log(pagesAllBooks);
+
+// sort: put the array in order
+// the method changes the original array
+// a-b put in ascending order
+const unorderedArray = [3, 7, 1, 9, 6];
+const sortedArray = unorderedArray.sort((a, b) => a - b); // ascending
+console.log(unorderedArray);
+console.log(sortedArray);
+
+// a trick to keep the original array untouched is to use the method
+// slice() without parameters
+const unorderedArray2 = [3, 7, 1, 9, 6];
+const sortedArray2 = unorderedArray2.slice().sort((a, b) => a - b); // ascending
+console.log(unorderedArray2);
+console.log(sortedArray2);
+
+// sorting objects
+// descending
+const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
+console.log(sortedByPages);
