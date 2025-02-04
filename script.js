@@ -148,6 +148,7 @@ function getBook(id) {
 // desestruturação - destructuring
 /*
 const book = getBook(3);
+const books = getBooks();
 
 // const title = book.title;
 // const author = book.author;
@@ -305,12 +306,9 @@ const advenureBooks = books
   .map((book) => book.title);
 console.log(advenureBooks);
 
-*/
-
 // reduce: reduce the entire array
 // first argument: get each element of an array and the accumulator
 // second argument: gets the initial value of the accumulator. It can be a number, an array, object and so on
-const books = getBooks();
 
 // acc stands for accumulator
 const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
@@ -335,3 +333,30 @@ console.log(sortedArray2);
 // descending
 const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
 console.log(sortedByPages);
+*/
+
+// immutable arrays
+const books = getBooks();
+// 1) Add a book object to array
+// add: spread operator
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "J. K. Rowling",
+};
+const booksAfterAdd = [...books, newBook];
+console.log(booksAfterAdd);
+
+// 2) Delete book object from array
+// delete: reduce the size of array: reduce
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3); // filter all but 3
+console.log(booksAfterDelete);
+
+// 3) Update book object in the array
+// update: map
+// keep the same size: map
+// spred the book we want and update the property
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 1 } : book
+);
+console.log(booksAfterUpdate);
