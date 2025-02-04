@@ -333,7 +333,6 @@ console.log(sortedArray2);
 // descending
 const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
 console.log(sortedByPages);
-*/
 
 // immutable arrays
 const books = getBooks();
@@ -360,3 +359,14 @@ const booksAfterUpdate = booksAfterDelete.map((book) =>
   book.id === 1 ? { ...book, pages: 1 } : book
 );
 console.log(booksAfterUpdate);
+
+
+// Promises
+// we need to wait fetch makes the HTTP call. The method then() is called as soon as
+// the promise is fulfilled. Inside then() we can treat the data
+fetch("https://jsonplaceholder.typicode.com/todos")
+  .then((res) => res.json()) // json converts to json (it's also an promise), so we need another then()
+  .then((data) => console.log(data)); // here we already have the response converted to json
+console.log("manoel");
+// note that "manoel" is printed BEFOR the data arrives. It's because the way promises work
+*/
